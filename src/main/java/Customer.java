@@ -10,7 +10,7 @@ public class Customer {
         this.name = name;
     }
 
-    public void addRental(Rental rental){
+    public void addRental(Rental rental) {
         rentals.addElement(rental);
     }
 
@@ -18,10 +18,10 @@ public class Customer {
         return name;
     }
 
-    public String statement(){
+    public String statement() {
         Enumeration allRentals = rentals.elements();
         String result = "Rental records for " + getName() + "\n";
-        while(allRentals.hasMoreElements()){
+        while (allRentals.hasMoreElements()) {
             Rental each = (Rental) allRentals.nextElement();
             result += "\t" + each.getMovie().getTitle() + "\t" + each.getCharge() + "\n";
         }
@@ -30,31 +30,25 @@ public class Customer {
         return result;
     }
 
-    private int getTotalFrequentRenterPoints(){
+    private int getTotalFrequentRenterPoints() {
         int result = 0;
         Enumeration allRentals = rentals.elements();
-        while(allRentals.hasMoreElements()){
+        while (allRentals.hasMoreElements()) {
             Rental each = (Rental) allRentals.nextElement();
-            result += getFrequentRentalPoints(each);
+            result += each.getFrequentRentalPoints();
         }
         return result;
     }
 
-    private double getTotalCharge(){
+    private double getTotalCharge() {
         double result = 0;
         Enumeration allRentals = rentals.elements();
-        while(allRentals.hasMoreElements()){
+        while (allRentals.hasMoreElements()) {
             Rental each = (Rental) allRentals.nextElement();
             result += each.getCharge();
         }
         return result;
     }
 
-    private int getFrequentRentalPoints(Rental aRental){
-        if(aRental.getMovie().getPriceCode() == Movie.NEW_RELEASE &&
-                aRental.getDaysRented() > 1){
-            return 2;
-        }
-        return 1;
-    }
+
 }
