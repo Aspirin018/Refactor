@@ -15,6 +15,10 @@ public class Movie {
         return price.getCharge(daysRented);
     }
 
+    public int getFrequentRentalPoints(int daysRented) {
+        return price.getFrequentRentalPoints(daysRented);
+    }
+
     public String getTitle() {
         return title;
     }
